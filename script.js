@@ -1,60 +1,18 @@
 let response;
 $(document).ready(function () {
-    $("#btn-register").click(function () {
-        let email = $("#email").val()
-        let name = $("#name").val()
-        let password = $("#password").val()
-        let token;
-        $.ajax({
-            url: 'http://jwt.nikola.eu.org/api/register',
-            type: 'POST',
-            dataType: 'json',
-            accept: 'application/json',
-            crossOrigin: true,
-            crossDomain: true,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Credentials": true,
-            },
-            data: {
-                email: email,
-                name: name,
-                password: password
-            }
-        }).done(function (data) {
-            response = data;
-            console.log(response.access_token);
-            $("#token").text(data.access_token);
-            token = data.access_token;
-            window.localStorage.setItem("token", token)
-        });
-    });
+    let content = "<p>Welcome to the API frontend homepage. From here, you can explore some of the functions" +
+        " that the backend can provide you with. It's created for easier testing and further improvements in" +
+        " real world scenarios.</p>";
+    $("#content").append(content);
 
-    $("#showToken").click(function() {
-        alert(window.localStorage.getItem("token"));
-    });
+   $("#linkHome").click(function () {
+        $("#content").empty();
+        $("#content").append(content);
+   });
 
-    $("#showInfo").click(function () {
-        let token = window.localStorage.getItem("token");
+   $("#linkLogin").click(function (){
+       $("#content").empty();
+       $("#content").append("A login form.");
+   });
 
-        $("#userInfo").empty();
-
-        $.ajax({
-            url: 'http://jwt.nikola.eu.org/api/user',
-            type: "POST",
-            dataType: "json",
-            accept: "application/json",
-            crossOrigin: true,
-            crossDomain: true,
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Credentials": true,
-                "Authorization": 'Bearer ' + token,
-            },
-        }).done(function (data) {
-            console.log(data)
-            $("#userInfo").append("<p>Name: " + data.name + "</p>");
-            $("#userInfo").append("<p>Email: " + data.email + "</p>");
-        });
-    });
 });
