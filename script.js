@@ -27,7 +27,7 @@ $(document).ready(function () {
         $("#loginResponse").text("Attempting to login.");
         console.log("Login button pressed.")
         $.ajax({
-            url: 'http://jwt.nikola.eu.org/api/login',
+            url: 'https://jwt.nikola.eu.org/api/login',
             type: 'POST',
             dataType: 'json',
             accept: 'application/json',
@@ -56,7 +56,7 @@ $(document).ready(function () {
         $("#loginResponse").text("Attempting to register.");
         console.log("Register button pressed.")
         $.ajax({
-            url: 'http://jwt.nikola.eu.org/api/register',
+            url: 'https://jwt.nikola.eu.org/api/register',
             type: 'POST',
             dataType: 'json',
             accept: 'application/json',
